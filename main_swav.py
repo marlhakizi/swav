@@ -280,8 +280,11 @@ def main():
         new_state_dict = model.state_dict()
 
         # Load weights, and remove bias and weights.
+        # state_dict = torch.hub.load(
+        #     "facebookresearch/swav:main", "resnet50"
+        # ).state_dict()
         state_dict = torch.hub.load(
-            "facebookresearch/swav:main", "resnet50"
+            "pytorch/vision", "resnet50", weights="IMAGENET1K_V2"
         ).state_dict()
         state_dict.pop("fc.bias")
         state_dict.pop("fc.weight")
